@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>ColorFilter</title>
+    <link rel="stylesheet" href="style.css">
+        <script src="script.js" type="module"></script>
+</head>
+<body>
+    <div class="wrapper">
+
+        <div class="img-selector-container">
+            <input id="img-selector" type="file" accept="image/*"/>
+        </div>
+
+        <div class="origin-img-container">
+            <img id="origin-img" src="#" alt="Image d'origine">
+        </div>
+
+        <div class="working-img-container">
+            <canvas id="working-img" width="1" height="1"></canvas>
+        </div>
+
+        <div class="img-controls-container origin-img-controls-container">
+            <div>
+                <input id="invert-checkbox" class="img-control" type="checkbox"/>
+                <label for="invert-checkbox">Inverser l'image</label>
+            </div>
+        </div>
+        <div class="img-controls-container working-img-controls-container">
+            <div>
+                <input class="img-control filter" type="range" id="yellow-filter" name="yellow-filter" min="0" max="135" value="80"/>
+                <label for="yellow-filter">Jaune</label>
+            </div>
+            <div>
+                <input class="img-control filter" type="range" id="magenta-filter" name="magenta-filter" min="0" max="135" value="70"/>
+                <label for="magenta-filter">Magenta</label>
+            </div>
+            <div>
+                <input class="img-control filter" type="range" id="cyan-filter" name="cyan-filter" min="0" max="135" value="0"/>
+                <label for="cyan-filter">Cyan</label>
+            </div>
+            <div>
+                <input class="img-control" type="range" id="exposition" name="exposition" min="0" max="2" value="1" step="0.01"/>
+                <label for="exposition">Exposition</label>
+            </div>
+        </div>
+        
+    </div>    
+</body>
+</html>
