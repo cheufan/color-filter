@@ -1,4 +1,4 @@
-import * as compute from "/compute.js"
+import * as compute from './modules/compute.js'
 
 const imgSelector = document.getElementById('img-selector')
 const originImg = document.getElementById('origin-img')
@@ -12,13 +12,14 @@ const cyanFilter = document.getElementById('cyan-filter')
 const exposureAdjuster = document.getElementById('exposition')
 
 
-imgSelector.onchange = loadOriginImg
-originImg.addEventListener('load', createWorkingImgFromOriginImg)
-originImg.addEventListener('load', showControls)
+imgSelector.addEventListener('change', loadOriginImg)
+originImg.addEventListener('load', invertOriginImg)
+originImg.addEventListener('load', updateWorkingImg)
 invertCheckbox.addEventListener('click', invertOriginImg)
-invertCheckbox.addEventListener('click', adjustWorkingImg)
-document.querySelectorAll('.img-control').forEach((elt) => elt.addEventListener('change', adjustWorkingImg ))
-
+originImg.addEventListener('load', showControls)
+document.querySelectorAll('.img-control').forEach((elt) => elt.addEventListener('input', updateWorkingImg))
+document.querySelectorAll('.filter').forEach((elt) => elt.addEventListener('input', updateFilterLabelValue))
+exposureAdjuster.addEventListener('input', updateExposureLabelValue)
 
 function loadOriginImg() {
   const file = this.files[0]
@@ -34,21 +35,12 @@ function loadOriginImg() {
   reader.readAsDataURL(file)
 }
 
-function createWorkingImgFromOriginImg() {
-  const newImg = new Image()
-  newImg.src = originImg.src
-  workingImg.width = originImg.width
-  workingImg.height = originImg.height
-  workingImgCtx.drawImage(newImg, 0, 0, originImg.width, originImg.height)
-}
-
 function showControls()
 {
   document.querySelectorAll('.img-controls-container').forEach((elt) => elt.style.display = 'block')
 }
 
 function invertOriginImg() {
-  // Inversion de l'image d'origine via du CSS
   if (invertCheckbox.checked) {
     originImg.classList.add('inverted')
     return
@@ -57,25 +49,34 @@ function invertOriginImg() {
   originImg.classList.remove('inverted')
 }
 
-function adjustWorkingImg() {
-  const imgData = getCleanedWorkingImageData()
-  compute.setInvertImg(invertCheckbox.checked)
+function updateWorkingImg() {
+  createWorkingImg()
+  computeWorkingImg()
+}
+
+function createWorkingImg() {
+  const newImg = new Image()
+  newImg.src = originImg.src
+  workingImg.width = originImg.width
+  workingImg.height = originImg.height
+  workingImgCtx.drawImage(newImg, 0, 0, originImg.width, originImg.height)
+}
+
+function computeWorkingImg() {
+  const imgData = workingImgCtx.getImageData(0, 0, workingImg.width, workingImg.height)
   compute.setImageData(imgData.data)
   compute.setInvertImg(invertCheckbox.checked)
   compute.setFiltersValues(yellowFilter.value, magentaFilter.value, cyanFilter.value)
   compute.setAdjustExposureValue(exposureAdjuster.value)
   compute.compute()
-  putWorkingImageData(imgData)
+  workingImgCtx.putImageData(imgData, 0, 0)
 }
 
-function getCleanedWorkingImageData() {
-  createWorkingImgFromOriginImg()
-  return workingImgCtx.getImageData(0, 0, workingImg.width, workingImg.height)
+function updateFilterLabelValue(e) {
+  e.target.parentNode.querySelector('output').value = e.target.value
 }
 
-/**
- * @param {Uint8ClampedArray} 
- */
-function putWorkingImageData(imgData) {
-  workingImgCtx.putImageData(imgData, 0, 0);
+function updateExposureLabelValue(e) {
+  let percentValue = Math.round((e.target.value - 1) * 100) + ' %'
+  e.target.parentNode.querySelector('output').value = percentValue 
 }

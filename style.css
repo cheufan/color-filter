@@ -44,3 +44,10 @@
     grid-column: 2;
     text-align: left;
 }
+.control-container {
+    margin: 10px auto;
+}
+.filter-value, .exposure-value {
+    display: inline-block;
+    min-width: 40px;
+}

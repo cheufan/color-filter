@@ -16,10 +16,20 @@ function compute() {
   return imageData
 }
 
+/**
+ * 
+ * @param {Uint8ClampedArray} data 
+ */
 function setImageData(data) {
   imageData = data
 }
 
+/**
+ * 
+ * @param {int} yellow 
+ * @param {int} magenta 
+ * @param {int} cyan 
+ */
 function setFiltersValues(yellow, magenta, cyan) {
   yellowFilterValue = agrandisseurValueTo255(yellow)
   magentaFilterValue = agrandisseurValueTo255(magenta)
@@ -30,14 +40,14 @@ function setAdjustExposureValue(value) {
   adjustExposureValue = value
 }
 
+/**
+ * 
+ * @param {boolean} value 
+ */
 function setInvertImg(value) {
   invertImg = value
 }
 
-/**
- * 
- * @returns {Uint8ClampedArray} 
- */
 function invert() {
     for (var i = 0; i < imageData.length; i += 4) {
       imageData[i] = 255 - imageData[i];
@@ -59,35 +69,6 @@ function filter() {
     }
 }
 
-function oldFilter() {
-    //drawMir()
-    drawNegative()
-    invert()
-    const yellowFilterValue = agrandisseurValueTo255(yellowFilter.value)
-    const magentaFilterValue = agrandisseurValueTo255(magentaFilter.value)
-    const cyanFilterValue = agrandisseurValueTo255(cyanFilter.value)
-    console.debug(yellowFilter.value, magentaFilter.value, cyanFilter.value)
-
-    const imgData = ctx.getImageData(0, 0, workingImg.width, workingImg.height)
-    const data = imgData.data
-    for (var i = 0; i < data.length; i += 4) {
-      let newBleu = data[i + 2] - yellowFilterValue
-      data[i + 2] = newBleu < 0 ? 0 : newBleu
-
-      let newVert = data[i + 1] - magentaFilterValue
-      data[i + 1] = newVert < 0 ? 0 : newVert
-
-      let newRouge = data[i] - cyanFilterValue
-      data[i] = newRouge < 0 ? 0 : newRouge
-    }
-    ctx.putImageData(imgData, 0, 0);
-    reExpose(exposureAdjuster.value)
-}
-
-/**
- * 
- * @returns {Uint8ClampedArray}
- */
 function adjustExposure() {
     for (var i = 0; i < imageData.length; i += 4) {
       imageData[i] *= adjustExposureValue
@@ -96,6 +77,11 @@ function adjustExposure() {
     }    
 }
 
+/**
+ * 
+ * @param {int} agrandisseurValue 
+ * @returns {int}
+ */
 function agrandisseurValueTo255(agrandisseurValue) {
   return Math.round(agrandisseurValue / 130 * 255)
 }

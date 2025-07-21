@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>ColorFilter</title>
     <link rel="stylesheet" href="style.css">
-        <script src="script.js" type="module"></script>
+        <script src="app.js" type="module" defer></script>
 </head>
 <body>
     <div class="wrapper">
@@ -23,24 +23,28 @@
 
         <div class="img-controls-container origin-img-controls-container">
             <div>
-                <input id="invert-checkbox" class="img-control" type="checkbox"/>
+                <input id="invert-checkbox" class="img-control" type="checkbox" checked="checked"/>
                 <label for="invert-checkbox">Inverser l'image</label>
             </div>
         </div>
         <div class="img-controls-container working-img-controls-container">
-            <div>
-                <input class="img-control filter" type="range" id="yellow-filter" name="yellow-filter" min="0" max="135" value="80"/>
+            <div class="control-container">
+                <output class="filter-value">0</output>
+                <input class="img-control filter" type="range" id="yellow-filter" name="yellow-filter" min="0" max="135" value="0"/>
                 <label for="yellow-filter">Jaune</label>
             </div>
-            <div>
-                <input class="img-control filter" type="range" id="magenta-filter" name="magenta-filter" min="0" max="135" value="70"/>
+            <div class="control-container">
+                <output class="filter-value">0</output>
+                <input class="img-control filter" type="range" id="magenta-filter" name="magenta-filter" min="0" max="135" value="0"/>
                 <label for="magenta-filter">Magenta</label>
             </div>
-            <div>
+            <div class="control-container">
+                <output class="filter-value">0</output>
                 <input class="img-control filter" type="range" id="cyan-filter" name="cyan-filter" min="0" max="135" value="0"/>
                 <label for="cyan-filter">Cyan</label>
             </div>
-            <div>
+            <div class="control-container">
+                <output class="exposure-value">0</output>
                 <input class="img-control" type="range" id="exposition" name="exposition" min="0" max="2" value="1" step="0.01"/>
                 <label for="exposition">Exposition</label>
             </div>
