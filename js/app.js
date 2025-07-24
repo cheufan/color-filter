@@ -18,8 +18,6 @@ originImg.addEventListener('load', updateWorkingImg)
 invertCheckbox.addEventListener('click', invertOriginImg)
 originImg.addEventListener('load', showControls)
 document.querySelectorAll('.img-control').forEach((elt) => elt.addEventListener('input', updateWorkingImg))
-document.querySelectorAll('.filter').forEach((elt) => elt.addEventListener('input', updateFilterLabelValue))
-exposureAdjuster.addEventListener('input', updateExposureLabelValue)
 
 function loadOriginImg() {
   const file = this.files[0]
@@ -72,11 +70,3 @@ function computeWorkingImg() {
   workingImgCtx.putImageData(imgData, 0, 0)
 }
 
-function updateFilterLabelValue(e) {
-  e.target.parentNode.querySelector('output').value = e.target.value
-}
-
-function updateExposureLabelValue(e) {
-  let percentValue = Math.round((e.target.value - 1) * 100) + ' %'
-  e.target.parentNode.querySelector('output').value = percentValue 
-}

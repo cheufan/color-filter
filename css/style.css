@@ -1,0 +1,45 @@
+.inverted {
+    filter: invert(1);
+}
+
+.file-container {
+    display: flex;
+    align-items: center;
+}
+
+.file-field {
+    flex: 2 auto;
+}
+
+.invert-checkbox-container {
+    flex: 3 auto;
+}
+
+.control-container {
+    display: flex;
+    align-items: center;
+    margin: 20px auto;
+}
+.control-container label {
+    flex-grow: 1;
+    flex-basis: 20%;
+}
+.control-container .range-field {
+    flex: 4 auto;
+}
+
+.yellow-filter-container .chip {
+    background-color: #ffff00;
+}
+
+.magenta-filter-container .chip {
+    background-color: #ff00ff;
+}
+
+.cyan-filter-container .chip {
+    background-color: #00ffff;
+}
+
+.img-controls-container {
+    display: none;
+}
