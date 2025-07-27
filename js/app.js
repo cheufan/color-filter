@@ -23,6 +23,7 @@ invertCheckbox.addEventListener('click', invertOriginImg)
 originImg.addEventListener('load', showControls)
 document.querySelectorAll('.img-control').forEach((elt) => elt.addEventListener('input', updateWorkingImg))
 
+
 function loadOriginImg() {
   const file = this.files[0]
   if (!file.type.startsWith("image/")) {
@@ -73,3 +74,5 @@ function computeWorkingImg() {
   compute.compute()
   workingImgCtx.putImageData(imgData, 0, 0)
 }
+
+document.querySelectorAll('.filter').forEach((elt) => elt.max = compute.maxFiltersValue)

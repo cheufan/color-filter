@@ -88,4 +88,4 @@ function agrandisseurValueTo255(agrandisseurValue) {
   return Math.round(agrandisseurValue / maxFiltersValue * 255)
 }
 
-export {setImageData, setInvertImg, setFiltersValues, setAdjustExposureValue, compute}
+export {setImageData, setInvertImg, setFiltersValues, setAdjustExposureValue, compute, maxFiltersValue}
