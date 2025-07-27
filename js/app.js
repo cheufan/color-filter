@@ -1,5 +1,9 @@
 import * as compute from './modules/compute.js'
 
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register('js/service-worker.js')
+}
+
 const imgSelector = document.getElementById('img-selector')
 const originImg = document.getElementById('origin-img')
 const workingImg = document.getElementById('working-img')
@@ -69,4 +73,3 @@ function computeWorkingImg() {
   compute.compute()
   workingImgCtx.putImageData(imgData, 0, 0)
 }
-

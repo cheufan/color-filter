@@ -5,78 +5,81 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
     <link rel="stylesheet" href="css/style.css"/>
+    <link rel="manifest" href="colorfilter.webmanifest" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
 
-  <nav>
-    <div class="nav-wrapper">
-      <a href="#" class="brand-logo center"><i class="large material-icons">camera</i> ColorFilter</a>
+    <div class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper">
+            <a href="#" class="brand-logo center"><i class="large material-icons">camera</i> ColorFilter</a>
+            </div>
+        </nav>
     </div>
-  </nav>
 
-  <div class="container">
+    <div class="container">
 
-    <form action="#">
-        <div class="file-container">
-            <div class="file-field input-field">
-                <div class="btn">
-                    <span><i class="medium material-icons">add_a_photo</i></span>
-                    <input id="img-selector" type="file" accept="image/*">
+        <form action="#">
+            <div class="file-container">
+                <div class="file-field input-field">
+                    <div class="btn">
+                        <span><i class="medium material-icons">add_a_photo</i></span>
+                        <input id="img-selector" type="file" accept="image/*">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text" placeholder="Ajouter ici votre image">
+                    </div>
                 </div>
-                <div class="file-path-wrapper">
-                    <input class="file-path validate" type="text" placeholder="Ajouter ici votre image">
-                </div>
-            </div>
-            <div class="switch invert-checkbox-container">
-                <label>
-                    Positif
-                    <input id="invert-checkbox" type="checkbox" class="img-control" checked="checked">
-                    <span class="lever"></span>
-                    Négatif
-                </label>
-            </div>
-        </div>
-
-        <img id="origin-img" class="responsive-img" src="#" alt="Image d'origine">   
-
-        <canvas id="working-img" width="1" height="1"></canvas>
-
-        <div class="img-controls-container">
-            <div class="control-container yellow-filter-container">
-                <label for="yellow-filter" class="chip center-align">Jaune</label>
-                <div class="range-field">
-                    <input id="yellow-filter" type="range"  min="0" max="135" value="0" class="img-control filter"/>
+                <div class="switch invert-checkbox-container">
+                    <label>
+                        Positif
+                        <input id="invert-checkbox" type="checkbox" class="img-control" checked="checked">
+                        <span class="lever"></span>
+                        Négatif
+                    </label>
                 </div>
             </div>
 
-            <div class="control-container magenta-filter-container">
-                <label for="magenta-filter" class="chip center-align">Magenta</label>
-                <div class="range-field">
-                    <input id="magenta-filter" type="range"  min="0" max="135" value="0" class="img-control filter"/>
-                </div>
-            </div>
+            <img id="origin-img" class="responsive-img origin-img" src="#" alt="Image d'origine">   
 
-            <div class="control-container cyan-filter-container">
-                <label for="cyan-filter" class="chip center-align">Cyan</label>
-                <div class="range-field">
-                    <input id="cyan-filter" type="range"  min="0" max="135" value="0" class="img-control filter"/>
-                </div>
-            </div>
+            <canvas id="working-img" width="1" height="1"></canvas>
 
-            <div class="control-container">
-                <label for="exposition" class="chip center-align">Exposition</label>
-                <div class="range-field">
-                    <input id="exposition" type="range"  min="0" max="5" value="1" step="0.01" class="img-control"/>
+            <div class="img-controls-container">
+                <div class="control-container yellow-filter-container">
+                    <label for="yellow-filter" class="chip center-align">Jaune</label>
+                    <div class="range-field">
+                        <input id="yellow-filter" type="range"  min="0" max="135" value="0" class="img-control filter"/>
+                    </div>
+                </div>
+
+                <div class="control-container magenta-filter-container">
+                    <label for="magenta-filter" class="chip center-align">Magenta</label>
+                    <div class="range-field">
+                        <input id="magenta-filter" type="range"  min="0" max="135" value="0" class="img-control filter"/>
+                    </div>
+                </div>
+
+                <div class="control-container cyan-filter-container">
+                    <label for="cyan-filter" class="chip center-align">Cyan</label>
+                    <div class="range-field">
+                        <input id="cyan-filter" type="range"  min="0" max="135" value="0" class="img-control filter"/>
+                    </div>
+                </div>
+
+                <div class="control-container">
+                    <label for="exposition" class="chip center-align">Exposition</label>
+                    <div class="range-field">
+                        <input id="exposition" type="range"  min="0" max="5" value="1" step="0.01" class="img-control"/>
+                    </div>
                 </div>
             </div>
-        </div>
+            
+        </form>
         
-    </form>
-    
-  </div>
+    </div>
 
-<script type="text/javascript" src="js/materialize.min.js"></script>
-<script type="module" src="js/app.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="module" src="js/app.js"></script>
 </body>
 </html>

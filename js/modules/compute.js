@@ -1,3 +1,5 @@
+const maxFiltersValue = 200
+
 let imageData
 let adjustExposureValue = 1
 let invertImg = false
@@ -83,7 +85,7 @@ function adjustExposure() {
  * @returns {int}
  */
 function agrandisseurValueTo255(agrandisseurValue) {
-  return Math.round(agrandisseurValue / 130 * 255)
+  return Math.round(agrandisseurValue / maxFiltersValue * 255)
 }
 
 export {setImageData, setInvertImg, setFiltersValues, setAdjustExposureValue, compute}
