@@ -37,7 +37,7 @@ function loadOriginImg() {
     temporaryImg.src = e.target.result
     temporaryImg.onload = (e) => {
       originImg.width = container.offsetWidth
-      originImg.height = container.offsetWidth *  e.originalTarget.height / e.originalTarget.width
+      originImg.height = container.offsetWidth *  e.target.height / e.target.width
       originImgCtx.drawImage(temporaryImg, 0, 0, originImg.width, originImg.height)
       updateWorkingImg()
       invertOriginImg()
