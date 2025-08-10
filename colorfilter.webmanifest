@@ -4,8 +4,8 @@
   "description": "ColorFilter apply yellow, magenta & cyan filter to an uploaded image.",
   "start_url": "index.html",
   "display": "minimal-ui",
-  "theme_color": "#ee6e73",
-  "background_color": "#ee6e73",
+  "theme_color": "#fff",
+  "background_color": "#fff",
   "icons": [
     {
       "src": "icons/android/android-launchericon-512-512.png",
