@@ -1,11 +1,15 @@
 import * as compute from './modules/compute.js'
+import * as tools from './modules/tools.js'
 
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register('js/service-worker.js')
 }
 
+const container = document.getElementById('container')
+
 const imgSelector = document.getElementById('img-selector')
 const originImg = document.getElementById('origin-img')
+const originImgCtx = originImg.getContext('2d')
 const workingImg = document.getElementById('working-img')
 const workingImgCtx = workingImg.getContext('2d')
 
@@ -17,23 +21,27 @@ const exposureAdjuster = document.getElementById('exposition')
 
 
 imgSelector.addEventListener('change', loadOriginImg)
-originImg.addEventListener('load', invertOriginImg)
-originImg.addEventListener('load', updateWorkingImg)
 invertCheckbox.addEventListener('click', invertOriginImg)
-originImg.addEventListener('load', showControls)
-document.querySelectorAll('.img-control').forEach((elt) => elt.addEventListener('input', updateWorkingImg))
-
+document.querySelectorAll('.img-control').forEach((elt) => elt.addEventListener('input', tools.debounce(updateWorkingImg)))
 
 function loadOriginImg() {
   const file = this.files[0]
   if (!file.type.startsWith("image/")) {
     return
   }
-  
-  originImg.file = file
+  const temporaryImg = new Image()
+  temporaryImg.file = file
   const reader = new FileReader()
   reader.onload = (e) => {
-    originImg.src = e.target.result
+    temporaryImg.src = e.target.result
+    temporaryImg.onload = (e) => {
+      originImg.width = container.offsetWidth
+      originImg.height = container.offsetWidth *  e.originalTarget.height / e.originalTarget.width
+      originImgCtx.drawImage(temporaryImg, 0, 0, originImg.width, originImg.height)
+      updateWorkingImg()
+      invertOriginImg()
+      showControls()
+    }
   }
   reader.readAsDataURL(file)
 }
@@ -58,11 +66,9 @@ function updateWorkingImg() {
 }
 
 function createWorkingImg() {
-  const newImg = new Image()
-  newImg.src = originImg.src
   workingImg.width = originImg.width
   workingImg.height = originImg.height
-  workingImgCtx.drawImage(newImg, 0, 0, originImg.width, originImg.height)
+  workingImgCtx.drawImage(originImg, 0, 0)
 }
 
 function computeWorkingImg() {

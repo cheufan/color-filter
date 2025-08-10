@@ -2,25 +2,6 @@
     color: white;
 }
 
-/*
-img::after {
-     content: "\2639" " " attr(alt);
-
-     font-size: 18px;
-     color: rgb(100, 100, 100);
-
-     display: block;
-     position: absolute;
-     z-index: 2;
-     top: 5px;
-     left: 0;
-     width: 100%;
-     height: 100%;
-}
-*/
-
-
-
 .inverted {
     filter: invert(1);
 }
