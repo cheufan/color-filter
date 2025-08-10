@@ -10,6 +10,7 @@ const filesToCache = [
     '/js/service-worker.js',
     '/js/materialize.js',
     '/js/modules/compute.js',
+    '/js/modules/tools.js',
     '/js/app.js',
     '/colorfilter.webmanifest',
     '/icons/ios/76.png',

@@ -4,6 +4,7 @@ const cacheName = 'colorfilter-v0.2.0'
 
 self.addEventListener('install', (e) => {
   console.log("[Service Worker] Install")
+  return
   e.waitUntil(
     (async () => {
         const cache = await caches.open(cacheName)
@@ -16,6 +17,7 @@ self.addEventListener('install', (e) => {
 
 self.addEventListener('fetch', (e) => {
   console.log(`[Service Worker] Fetched resource ${e.request.url}`)
+  return
     e.respondWith(
     (async () => {
       const r = await caches.match(e.request)
@@ -33,6 +35,7 @@ self.addEventListener('fetch', (e) => {
 })
 
 self.addEventListener('activate', (e) => {
+  return
   e.waitUntil(
     caches.keys().then((keyList) => {
       return Promise.all(
