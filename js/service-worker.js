@@ -1,6 +1,6 @@
 self.importScripts('files-to-cache.js');
 
-const cacheName = 'colorfilter-v0.1.0'
+const cacheName = 'colorfilter-v0.2.0'
 
 self.addEventListener('install', (e) => {
   console.log("[Service Worker] Install")
