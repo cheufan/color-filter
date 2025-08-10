@@ -22,7 +22,8 @@ const exposureAdjuster = document.getElementById('exposition')
 
 imgSelector.addEventListener('change', loadOriginImg)
 invertCheckbox.addEventListener('click', invertOriginImg)
-document.querySelectorAll('.img-control').forEach((elt) => elt.addEventListener('input', tools.debounce(updateWorkingImg)))
+document.getElementById('invert-checkbox').addEventListener('change', updateWorkingImg)
+document.querySelectorAll('input[type=range]').forEach((elt) => elt.addEventListener('input', tools.debounce(updateWorkingImg)))
 
 function loadOriginImg() {
   const file = this.files[0]
