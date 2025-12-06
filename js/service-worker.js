@@ -1,24 +1,24 @@
 self.importScripts('files-to-cache.js');
 
-const cacheName = 'colorfilter-v0.2.0'
+const cacheName = 'colorfilter-v0.2.2'
 
 self.addEventListener('install', (e) => {
   console.log("[Service Worker] Install")
-  return
+
   e.waitUntil(
     (async () => {
-        const cache = await caches.open(cacheName)
-        console.log('[Service Worker] Caching files')
-        await cache.addAll(filesToCache)
-        console.log('[Service Worker] Files cached')
+      const cache = await caches.open(cacheName)
+      console.log('[Service Worker] Caching files')
+      await cache.addAll(filesToCache)
+      console.log('[Service Worker] Files cached')
     })()
   )
 })
 
 self.addEventListener('fetch', (e) => {
   console.log(`[Service Worker] Fetched resource ${e.request.url}`)
-  return
-    e.respondWith(
+
+  e.respondWith(
     (async () => {
       const r = await caches.match(e.request)
       console.log(`[Service Worker] Fetching resource: ${e.request.url}`)
@@ -35,14 +35,18 @@ self.addEventListener('fetch', (e) => {
 })
 
 self.addEventListener('activate', (e) => {
-  return
+  console.log("[Service Worker] Activate")
+
   e.waitUntil(
     caches.keys().then((keyList) => {
+      console.log(keyList)
       return Promise.all(
         keyList.map((key) => {
           if (key === cacheName) {
+            console.log('on garde')
             return
           }
+          console.log('on supprime')
           return caches.delete(key)
         }),
       )

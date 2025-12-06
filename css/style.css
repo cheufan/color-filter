@@ -1,4 +1,5 @@
-body { /* Disable text selection */
+body {
+    /* Disable text selection */
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
@@ -27,10 +28,12 @@ body { /* Disable text selection */
     align-items: center;
     margin: 20px auto;
 }
+
 .control-container label {
     flex-grow: 1;
     flex-basis: 20%;
 }
+
 .control-container .range-field {
     flex: 4 auto;
 }
@@ -49,4 +52,112 @@ body { /* Disable text selection */
 
 .img-controls-container {
     display: none;
+}
+
+#img-container {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+#origin-img,
+#working-img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+#origin-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    clip-path: inset(0 50% 0 0);
+}
+
+#working-img {
+    position: relative;
+    z-index: 1;
+}
+
+#slider-handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    background-color: white;
+    z-index: 3;
+    cursor: ew-resize;
+    transform: translateX(-50%);
+}
+
+#slider-handle .handle-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    color: #333;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Horizontal Mode */
+#img-container.horizontal #slider-handle {
+    top: 50%;
+    bottom: auto;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 2px;
+    cursor: ns-resize;
+    transform: translateY(-50%);
+}
+
+#img-container.horizontal #origin-img {
+    clip-path: inset(0 0 50% 0);
+    /* Default horizontal split */
+}
+
+/* Hidden State */
+#img-container.hidden #slider-handle,
+#img-container.hidden #orientation-toggle {
+    display: none;
+}
+
+#img-container.hidden #origin-img {
+    clip-path: inset(0 0 0 0) !important;
+    /* Show full original? Or full processed? */
+    /* User said: "Un autre clique sur l'image en dehors de la zone du slider doit le faire disparaitre." */
+    /* Usually hiding the slider means showing the result. */
+    /* If I hide origin-img, I see working-img (result). */
+    display: none;
+}
+
+#orientation-toggle {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 4;
+    transition: background-color 0.3s;
+}
+
+#orientation-toggle:hover {
+    background-color: rgba(0, 0, 0, 0.6);
 }

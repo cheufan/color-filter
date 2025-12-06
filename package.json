@@ -1,0 +1,14 @@
+{
+  "name": "colorfilter",
+  "version": "1.0.0",
+  "description": "ColorFilter application",
+  "scripts": {
+    "test": "vitest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "vitest": "^1.0.0"
+  }
+}
