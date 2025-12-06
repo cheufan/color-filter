@@ -2,3 +2,4 @@
 .DS_Store
 certificate/
 todo.md
+node_modules/
